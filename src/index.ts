@@ -1,5 +1,9 @@
 import pkg from 'whatsapp-web.js';
 import QRCode from 'qrcode';
+import 'dotenv/config';
+import { drizzle } from 'drizzle-orm/node-postgres';
+
+const db = drizzle(process.env.DATABASE_URL!);
 
 const { Client, LocalAuth } = pkg;
 
@@ -9,7 +13,6 @@ const client = new Client({
 });
 
 client.on('qr', (qr: string) => {
-const textUrl = 'https://example.com';
   console.log('QR получен, отсканируйте в WhatsApp:');
   const qrText = QRCode.toString(qr, {type: "terminal", small: true}).then(qr =>{
     console.log(qr)
