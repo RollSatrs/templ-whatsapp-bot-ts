@@ -2,6 +2,7 @@ import pkg from 'whatsapp-web.js';
 import QRCode from 'qrcode';
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
+import { text } from './constante/text';
 
 const db = drizzle(process.env.DATABASE_URL!);
 
@@ -23,7 +24,7 @@ client.on('qr', (qr: string) => {
 });
 
 client.on('ready', () => {
-  console.log('✅ WhatsApp бот готов!');
+  console.log(text);
 });
 
 client.on('message', async (msg) => {
